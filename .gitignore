@@ -1,0 +1,7 @@
+**/__init__.py
+**/.ipynb_checkpoints
+
+**/images
+**/data
+**/frames
+**/__pycache__/
