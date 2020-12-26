@@ -27,7 +27,7 @@ def write_label_to_binary_file(label: int, dir_name: str) -> None:
         file_name.write(label.to_bytes(1, byteorder='big', signed=False))
 
 
-def crop_image_by_coordinates(dir_name, origin_img, coordinates, label):
+def crop_image_by_coordinates(dir_name: str, origin_img: Image, coordinates: np.array, label: int):
     x_coordinates, y_coordinates = coordinates
     x = x_coordinates[int(len(x_coordinates) / 2)]
     y = y_coordinates[int(len(x_coordinates) / 2)]

@@ -33,7 +33,7 @@ def calc_3D_data(norm_prev_pts: np.ndarray, norm_curr_pts: np.ndarray, R: np.nda
     norm_rot_pts = rotate(norm_prev_pts, R)
     pts_3D = []
     corresponding_ind = []
-    validVec = []
+    valid_vec = []
 
     for p_curr in norm_curr_pts:
         corresponding_p_ind, corresponding_p_rot = find_corresponding_points(p_curr, norm_rot_pts, foe)
@@ -41,12 +41,12 @@ def calc_3D_data(norm_prev_pts: np.ndarray, norm_curr_pts: np.ndarray, R: np.nda
         valid = (Z > 0)
         if not valid:
             Z = 0
-        validVec.append(valid)
+        valid_vec.append(valid)
         P = Z * np.array([p_curr[0], p_curr[1], 1])
         pts_3D.append((P[0], P[1], P[2]))
         corresponding_ind.append(corresponding_p_ind)
 
-    return corresponding_ind, np.array(pts_3D), validVec
+    return corresponding_ind, np.array(pts_3D), valid_vec
 
 
 def normalize(pts: np.array, focal: float, pp: np.array) -> np.ndarray:
@@ -87,6 +87,7 @@ def find_corresponding_points(p: np.array, norm_pts_rot: list, foe: np.array) ->
     # run over all norm_pts_rot and find the one closest to the epipolar line
     distance = [abs((m * p[0] + n - p[1]) / sqrt(m ** 2 + 1)) for p in norm_pts_rot]
     min_point = distance.index(min(distance))
+
     # return the closest point and its index
     return min_point, norm_pts_rot[min_point]
 
@@ -101,3 +102,6 @@ def calc_dist(p_curr: np.array, p_rot: np.array, foe: np.array, tZ: float) -> fl
     dy = abs(p_rot[1] - p_curr[1])
 
     return abs(Zx * dx / (dx + dy) + Zy * dy / (dx + dy))
+
+
+
