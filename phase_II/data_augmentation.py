@@ -24,7 +24,7 @@ def bright_image(image: np.array) -> np.array:
 
 def noise_image(image: np.array) -> np.array:
     gaussian_noise = iaa.AdditiveGaussianNoise(10, 20)
-    noise_image = gaussian_noise.augment_image(image)
+    noised_image = gaussian_noise.augment_image(image)
 
-    return noise_image
+    return noised_image
 
