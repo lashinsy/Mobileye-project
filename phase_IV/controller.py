@@ -1,6 +1,5 @@
 import pickle
-from phase_IV.TFL_manager import TFL_manager
-from phase_IV.frame import Frame
+from phase_IV.TFL_manager import TFL_manager, Frame
 
 
 class Controller:
@@ -9,7 +8,7 @@ class Controller:
         self.tfl_manager = None
 
     def get_frame_list(self):
-        with open("list.pls") as frame_file:
+        with open("playlist.pls") as frame_file:
             frame_list = []
             for f in frame_file:
                 frame_list.append(f[:-1])
@@ -28,10 +27,6 @@ class Controller:
             self.tfl_manager.on_frame(Frame(f, i + 1))
 
 
-def main():
+if __name__ == '__main__':
     c = Controller()
     c.run()
-
-
-if __name__ == '__main__':
-    main()
