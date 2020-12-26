@@ -2,7 +2,7 @@ import os
 import numpy as np
 from PIL import Image
 from phase_I.run_attention import find_tfl_lights
-from phase_II.data_augmentation import darken_image, bright_image, noise_image
+from phase_II.data_augmentation import dark_image, bright_image, noise_image
 
 
 def get_images_list(dir_name: str) -> list:
@@ -36,7 +36,7 @@ def crop_image_by_coordinates(dir_name: str, origin_img: Image, coordinates: np.
 
     if dir_name == 'train':
         write_image_to_binary_file(np.fliplr(np.array(cropped_img)).astype(np.uint8), label, dir_name)
-        write_image_to_binary_file(darken_image(cropped_img).astype(np.uint8), label, dir_name)
+        write_image_to_binary_file(dark_image(cropped_img).astype(np.uint8), label, dir_name)
         write_image_to_binary_file(bright_image(cropped_img).astype(np.uint8), label, dir_name)
         write_image_to_binary_file(noise_image(cropped_img).astype(np.uint8), label, dir_name)
 

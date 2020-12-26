@@ -8,7 +8,7 @@ def show_image(image: np.array) -> None:
     plt.show()
 
 
-def darken_image(image: np.array) -> np.array:
+def dark_image(image: np.array) -> np.array:
     contrast = iaa.GammaContrast(gamma=2.0)
     contrast_image = contrast.augment_image(image)
 
